@@ -93,7 +93,7 @@ return function(plugin: Plugin): (props: AppProps) -> ()
 
       id = "Fuse",
       toolTip = "Click to toggle the Fuse window",
-      icon = "",
+      icon = "rbxassetid://17002766001",
       enabled = props.pluginState.guiEnabled,
       onToggle = function(state: Fusion.Value<boolean>)
         widget.Enabled = state:get()
