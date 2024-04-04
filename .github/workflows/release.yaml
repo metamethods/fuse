@@ -20,6 +20,5 @@ jobs:
             -   run: echo "VERSION=$(cat ./Version.txt)" >> "$GITHUB_ENV"
             -   uses: ncipollo/release-action@v1
                 with: 
-                    draft: true
                     artifacts: fuse.rbxm
                     tag: ${{ env.VERSION }}
