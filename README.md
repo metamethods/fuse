@@ -1,5 +1,5 @@
 # Fuse
-Fuse is a plugin for the REx: Reincarnated ore creation community. Currently it in *alpha*, so **Expect Bugs**. You can get [the plugin here]() 
+Fuse is a plugin for the REx: Reincarnated ore creation community. Currently it in *alpha*, so **Expect Bugs**. You can get [the plugin here](https://create.roblox.com/store/asset/17002620134/Fuse) 
 
 ## Features
 - Ore Validator
