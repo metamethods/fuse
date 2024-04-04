@@ -23,6 +23,6 @@ return DescribableObject.new()
     end
     total = math.floor(total)
 
-    if total > PARTICLE_LIMIT then return false, `This ore emits more than {total - PARTICLE_LIMIT} particles/s on average.` end
+    if total > PARTICLE_LIMIT then return false, `This ore emits {total - PARTICLE_LIMIT} particles/s more than the {PARTICLE_LIMIT} particle/s limit.` end
     return true, `This ore emits currently emits {total} particles/s on average, which is well under the {PARTICLE_LIMIT} particles/s limit.`
   end)

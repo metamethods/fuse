@@ -1,0 +1,22 @@
+name: Release
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v4
+            -   uses: ok-nick/setup-aftman@v0.4.2
+            -   run: rojo sourcemap default.project.json --output sourcemap.json
+            -   run: wally-package-types --sourcemap sourcemap.json Packages/
+            -   run: rojo build --output fuse.rbxm
+            -   run: echo "VERSION=$(cat ./Version.txt)" >> "$GITHUB_ENV"
+            -   uses: ncipollo/release-action@v1
+                with: 
+                    draft: true
+                    artifacts: fuse.rbxm
+                    tag: ${{ env.VERSION }}
