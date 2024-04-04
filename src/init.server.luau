@@ -2,7 +2,7 @@ local Store = require(script.Store)
 local Types = require(script.Types)
 local App = require(script.App)
 
-local pluginStateStore = Store.new(plugin:GetSetting("PluginState"))
+local pluginStateStore = Store.new(plugin:GetSetting("PluginState") or {})
 local defaultPluginStateStore: Types.PluginState = {
   guiEnabled = true,
   tabIndex = 1
