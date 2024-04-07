@@ -6,7 +6,12 @@ local Utils = Fuse.Utils
 local DescribableObject = require(Classes.DescribableObject)
 local predictParticleEmission = require(Utils.predictParticleEmission)
 
-local PARTICLE_LIMIT = 16_000
+-- The limit is 16k, however one of the developers said that if two times of the predicted
+-- particle emission is greater than 16k, them it would be considered invalid.
+-- Thus I changed the limit to 8k as that would be the maximum amount of particles
+-- a ore can have
+local PARTICLE_LIMIT = 8_000
+local PARTICLE_LIMIT_WARNING = 4_000
 
 return DescribableObject.new()
   :setName("Ore Particle Limit")
@@ -23,6 +28,7 @@ return DescribableObject.new()
     end
     total = math.floor(total)
 
-    if total > PARTICLE_LIMIT then return false, `This ore emits {total - PARTICLE_LIMIT} particles/s more than the {PARTICLE_LIMIT} particle/s limit.` end
+    if total > PARTICLE_LIMIT then return false, `This ore emits <b>{total - PARTICLE_LIMIT} particles/s</b> more than the {PARTICLE_LIMIT} particle/s limit.` end
+    if total > PARTICLE_LIMIT_WARNING then return true, `This ore emits <b>{total} particles/s</b>, which is in the <b>non recomended range of particle emission</b> (<b>{PARTICLE_LIMIT_WARNING} particles/s</b>). Do note that this ore has a <b><i>high</i></b> chance of being <b>rejected</b> for this high count.` end
     return true, `This ore emits currently emits {total} particles/s on average, which is well under the {PARTICLE_LIMIT} particles/s limit.`
   end)
