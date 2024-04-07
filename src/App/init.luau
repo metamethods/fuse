@@ -1,5 +1,6 @@
 local Fuse = script:FindFirstAncestor("Fuse")
 local App = Fuse.App
+local Hooks = App.Hooks
 local Packages = Fuse.Packages
 local Components = App.Components
 
@@ -17,34 +18,12 @@ local Home = require(App.Pages.Home)
 local Validator = require(App.Pages.Validator)
 local Cat = require(App.Pages.Cat)
 local Notes = require(App.Pages.Notes)
+local useOre = require(Hooks.useOre)
 
 local New = Fusion.New
 local Value = Fusion.Value
 local Observer = Fusion.Observer
 local Children = Fusion.Children
-
-local PAGES = {
-  {
-    title = "Home",
-    order = 1,
-    component = Home()
-  },
-  {
-    title = "Ore Validator",
-    order = 2,
-    component = Validator()
-  },
-  {
-    title = "Ore Notes",
-    order = 3,
-    component = Notes()
-  },
-  {
-    title = "Cat Therapy",
-    order = 4,
-    component = Cat()
-  }
-}
 
 export type AppProps = {
   pluginState: Store.Store<Types.PluginState>
@@ -52,6 +31,34 @@ export type AppProps = {
 
 function AppComponent(props: AppProps)
   local pageIndex = Value(props.pluginState.tabIndex)
+  local ore = useOre()
+
+  local PAGES = {
+    {
+      title = "Home",
+      order = 1,
+      component = Home {}
+    },
+    {
+      title = "Ore Validator",
+      order = 2,
+      component = Validator {
+        ore = ore
+      }
+    },
+    {
+      title = "Ore Notes",
+      order = 3,
+      component = Notes {
+        ore = ore
+      }
+    },
+    {
+      title = "Cat Therapy",
+      order = 4,
+      component = Cat {}
+    }
+  }
 
   Observer(pageIndex):onChange(function()
     props.pluginState.tabIndex = pageIndex:get()

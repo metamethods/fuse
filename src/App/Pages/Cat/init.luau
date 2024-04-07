@@ -38,7 +38,9 @@ local function randomCatImage()
   return `http://www.roblox.com/asset/?id={CAT_IMAGE_IDS[math.random(#CAT_IMAGE_IDS)]}`
 end
 
-return function()
+export type CatProps = {}
+
+return function(props: CatProps)
   local imageId = Value(randomCatImage())
 
   task.spawn(function()

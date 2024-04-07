@@ -2,7 +2,6 @@ local Fuse = script:FindFirstAncestor("Fuse")
 
 local Packages = Fuse.Packages
 local App = Fuse.App
-local Hooks = App.Hooks
 local Components = App.Components
 
 local Fusion = require(Packages.fusion)
@@ -12,7 +11,6 @@ local ListLayout = require(Components.ListLayout)
 local HeaderText = require(Components.HeaderText)
 local Text = require(Components.Text)
 local TextBox = require(Components.TextBox)
-local useOre = require(Hooks.useOre)
 
 local New = Fusion.New
 local Computed = Fusion.Computed
@@ -77,14 +75,15 @@ function Actions(props: ActionsProps)
   }
 end
 
-export type NotesProps = {
+-- Gotta rename this to something else later
+export type NotesProps_ = {
   title: Fusion.Value<string>,
   description: Fusion.Value<string>,
   version: Fusion.Value<string>,
   notes: Fusion.Value<string>
 }
 
-function Notes(props: NotesProps)
+function Notes(props: NotesProps_)
   local NOTES = {
     {
       title = "Ore Title",
@@ -130,18 +129,20 @@ function Notes(props: NotesProps)
   }
 end
 
-return function()
-  local ore = useOre()
+export type NotesProps = {
+  ore: Fusion.Value<BasePart?>
+}
 
+return function(props: NotesProps)
   local title = Value("")
   local description = Value("")
   local version = Value("")
   local notes = Value("")
 
-  local observer = Observer(ore)
+  local observer = Observer(props.ore)
 
   observer:onChange(function()
-    local ore = ore:get()
+    local ore = props.ore:get()
     ore = ore or game
 
     title:set(ore:GetAttribute(Constants.ORE_TITLE) or "")
@@ -152,7 +153,7 @@ return function()
   observer:update()
 
   local function save()
-    local ore = ore:get()
+    local ore = props.ore:get()
     assert(ore)
 
     ore:SetAttribute(Constants.ORE_TITLE, title:get())
@@ -173,7 +174,7 @@ return function()
     [Children] = {
       ListLayout(Enum.FillDirection.Vertical, UDim.new(0, 8)),
 
-      Header { ore = ore },
+      Header { ore = props.ore },
       Notes {
         title = title,
         description = description,
@@ -181,7 +182,7 @@ return function()
         notes = notes
       },
       Actions {
-        ore = ore,
+        ore = props.ore,
         save = save
       },
     }

@@ -12,7 +12,9 @@ local ListLayout = require(Components.ListLayout)
 local New = Fusion.New
 local Children = Fusion.Children
 
-return function()
+export type HomeProps = {}
+
+return function(props: HomeProps)
   return New "Frame" {
     Name = "Home",
     BackgroundTransparency = 1,

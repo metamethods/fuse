@@ -1,11 +1,8 @@
 local Fuse = script:FindFirstAncestor("Fuse")
 
 local Packages = Fuse.Packages
-local App = Fuse.App
-local Hooks = App.Hooks
 
 local Fusion = require(Packages.fusion)
-local useOre = require(Hooks.useOre)
 
 local Header = require(script.Header)
 local Tests = require(script.Tests)
@@ -14,10 +11,13 @@ local Actions = require(script.Actions)
 local New = Fusion.New
 local Children = Fusion.Children
 
-return function()
-  local ore = useOre()
+export type ValidatorProps = {
+  ore: Fusion.Value<BasePart?>
+}
+
+return function(props: ValidatorProps)
   local testsFunction, testComponent = Tests {
-    ore = ore
+    ore = props.ore
   }
 
   return New "ScrollingFrame" {
@@ -35,9 +35,9 @@ return function()
         SortOrder = Enum.SortOrder.LayoutOrder,
       },
 
-      Header { ore = ore },
+      Header { ore = props.ore },
       Actions {
-        ore = ore,
+        ore = props.ore,
         onRunTestsClicked = testsFunction
       },
       testComponent
