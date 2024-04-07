@@ -1,10 +1,3 @@
---!native
-
--- Note to people who are reading this code from the github repo:
--- This thing is a mess, and super unoptimized... but you know what they say
--- if it works, then don't touch it
--- (Tbh, it actually runs pretty fast in studio for some reason so ¯\_(ツ)_/¯)
-
 local Fuse = script:FindFirstAncestor("Fuse")
 
 local Classes = Fuse.Classes
@@ -60,7 +53,6 @@ return DescribableObject.new()
       end
     end
 
-    -- Start constructing the DAG (Directed Acyclic Graph) of constraints
     for _, constraint in constraints do
       local object0, object1
 
