@@ -18,6 +18,8 @@ local Home = require(App.Pages.Home)
 local Validator = require(App.Pages.Validator)
 local Cat = require(App.Pages.Cat)
 local Notes = require(App.Pages.Notes)
+local Fixer = require(App.Pages.Fixer)
+local Skybox = require(App.Pages.Skybox)
 local useOre = require(Hooks.useOre)
 
 local New = Fusion.New
@@ -54,8 +56,20 @@ function AppComponent(props: AppProps)
       }
     },
     {
-      title = "Cat Therapy",
+      title = "Ore Fixer",
       order = 4,
+      component = Fixer {
+        ore = ore
+      } 
+    },
+    {
+      title = "Skyboxes",
+      order = 5,
+      component = Skybox {}
+    },
+    {
+      title = "Cat Therapy",
+      order = 6,
       component = Cat {}
     }
   }
