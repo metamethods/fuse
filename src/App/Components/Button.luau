@@ -20,18 +20,20 @@ local Computed = Fusion.Computed
 local Children = Fusion.Children
 
 export type ButtonProps = {
-  text: (string | Fusion.Computed<string>)?,
+  text: string?,
   textSize: number?,
-  position: (UDim2 | Fusion.Computed<UDim2>)?,
+  position: UDim2?,
+  size: UDim2?,
+  automaticSize: Enum.AutomaticSize?,
 
-  textColor: (Color3 | Fusion.Computed<Color3>)?,
-  disabledButtonColor: (Color3 | Fusion.Computed<Color3>)?,
-  backgroundColor: (Color3 | Fusion.Computed<Color3>)?,
-  overlayColor: (Color3 | Fusion.Computed<Color3>)?,
+  textColor: Color3?,
+  disabledButtonColor: Color3?,
+  backgroundColor: Color3?,
+  overlayColor: Color3?,
   noBorder: boolean?,
   overlayHoverTransparency: number?,
 
-  disabled: (Fusion.Computed<boolean> | Fusion.Value<boolean>)?,
+  disabled: boolean?,
   onClicked: () -> ()?
 }
 
@@ -61,7 +63,7 @@ return function(props: ButtonProps)
       if disabled:get() then return .8 end
       return props.backgroundColor and 0 or 1
     end),
-    Size = UDim2.new(0, 0, 0, 0),
+    Size = props.size or UDim2.new(0, 0, 0, 0),
     Position = props.position,
     AutomaticSize = Enum.AutomaticSize.XY,
 

@@ -7,10 +7,10 @@ local Fusion = require(Packages.fusion)
 local New = Fusion.New
 
 export type PaddingProps = (
-  a: (UDim | Fusion.Computed<UDim>),
-  b: (UDim | Fusion.Computed<UDim>)?,
-  c: (UDim | Fusion.Computed<UDim>)?,
-  d: (UDim | Fusion.Computed<UDim>)?
+  a: UDim?,
+  b: UDim?,
+  c: UDim?,
+  d: UDim?
 ) -> ()
 
 return function(a, b, c, d)
