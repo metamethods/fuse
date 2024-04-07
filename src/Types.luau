@@ -4,5 +4,6 @@ export type PluginState = {
 }
 
 export type TestFunction = (ore: BasePart) -> (boolean, string)
+export type FixFunction = (ore: BasePart) -> ()
 
 return nil
