@@ -1,0 +1,8 @@
+{
+  "name": "Fuse",
+  "tree": {
+    "$path": "src",
+    "Packages": { "$path": "Packages" },
+    "Version": { "$path": "Version.txt" }
+  }
+}
