@@ -43,7 +43,7 @@ local widgetButton = ButtonToggle {
 
   id = "Fuse",
   tooltip = "Click to toggle the Fuse window",
-  icon = "rbxassetid://17002766001",
+  icon = "",
 
   state = true,
 
