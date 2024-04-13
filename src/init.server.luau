@@ -45,7 +45,7 @@ local widgetButton = ButtonToggle {
   tooltip = "Click to toggle the Fuse window",
   icon = "rbxassetid://17002766001",
 
-  state = true,
+  state = false,
 
   toggled = function(state)
     widget.Enabled = state
