@@ -33,7 +33,7 @@ local widget = Widget {
   id = "Fuse",
   title = `Fuse {config.version}`,
   dockState = Enum.InitialDockState.Float,
-  enabled = true,
+  enabled = false,
   floatSize = Vector2.new(400, 400),
   minSize = Vector2.new(200, 200),
 }
