@@ -7,6 +7,7 @@ local Components = Fuse.App.Components
 
 local ScrollingFrame = require(Components.ScrollingFrame)
 local ParagraphText = require(Components.ParagraphText)
+local ScrollingParagraphText = require(Components.ScrollingParagraphText)
 local HeaderText = require(Components.HeaderText)
 local List = require(Components.List)
 local PrimaryButton = require(Components.PrimaryButton)
@@ -40,9 +41,9 @@ local function Header(props: HeaderProps): Frame
 
     Children = {
       HeaderText { Text = "Ore Validator" },
-      ParagraphText { Text = "Welcome to the ore validator! This is where you can run some tests on your ore to see if its valid for submission on REx: Reincarnated, and even can fix the issues with a simple button click below the test. If you are a ore curator, you can use this to check if people's submissions are valid." },
+      ScrollingParagraphText { Text = "Welcome to the ore validator! This is where you can run some tests on your ore to see if its valid for submission on REx: Reincarnated, and even can fix the issues with a simple button click below the test. If you are a ore curator, you can use this to check if people's submissions are valid." },
       HeaderText { Text = "Usage" },
-      ParagraphText { Text = "To use the ore validator, you'll need to select an ore topmost BasePart (e.g. Part, MeshPart, etc...), and then click the \"Validate Ore\" button!" },
+      ScrollingParagraphText { Text = "To use the ore validator, you'll need to select an ore topmost BasePart (e.g. Part, MeshPart, etc...), and then click the \"Validate Ore\" button!", Layout = { AutomaticSize = Enum.AutomaticSize.Y }},
       ParagraphText {
         Text = function()
           local oreInstance = props.ore()

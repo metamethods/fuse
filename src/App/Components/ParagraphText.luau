@@ -7,7 +7,7 @@ local Text = require(Components.Text)
 
 local vide = require(Packages.vide)
 
-local function HeaderText(props: vide.vTextLabel): TextLabel
+local function ParagraphText(props: vide.vTextLabel): TextLabel
   return Text {
     TextWrapped = true,
     TextXAlignment = Enum.TextXAlignment.Left,
@@ -18,4 +18,4 @@ local function HeaderText(props: vide.vTextLabel): TextLabel
   }
 end
 
-return HeaderText
+return ParagraphText
