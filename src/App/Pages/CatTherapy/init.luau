@@ -22,7 +22,7 @@ local function CatTherapy(props: Props): ScrollingFrame
     Name = "Thy Cube",
     Anchored = true,
     Size = Vector3.new(15, 15, 15),
-    Orientation = spring(cubeOrientation, 2, .25)
+    Orientation = spring(cubeOrientation, 1.5, .15)
   }
 
   task.spawn(function()
@@ -60,7 +60,7 @@ local function CatTherapy(props: Props): ScrollingFrame
     addImage()
     addImage()
 
-    while task.wait(5) do
+    while task.wait(10) do
       addImage()
       rotations(rotations() + 1)
     end
