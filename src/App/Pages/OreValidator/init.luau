@@ -1,5 +1,3 @@
-local Selection = game:GetService("Selection")
-
 local Fuse = script:FindFirstAncestor("Fuse")
 
 local Packages = Fuse.Packages
