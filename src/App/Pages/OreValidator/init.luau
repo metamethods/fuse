@@ -183,7 +183,7 @@ export type Props = {
   ore: () -> BasePart?
 }
 
-local function OreValidator(props: Props): ScrollingFrame
+local function Page(props: Props): ScrollingFrame
   local testFunctions: {(ore: BasePart) -> ()} = {}
 
   return ScrollingFrame {
@@ -227,4 +227,4 @@ local function OreValidator(props: Props): ScrollingFrame
   }
 end
 
-return OreValidator
+return Page

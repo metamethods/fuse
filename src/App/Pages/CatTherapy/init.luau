@@ -11,7 +11,7 @@ local spring = vide.spring
 
 export type Props = {}
 
-local function CatTherapy(props: Props): ScrollingFrame
+local function Page(props: Props): ScrollingFrame
   local rotations = source(0)
 
   local cubeOrientation = function()
@@ -92,4 +92,4 @@ local function CatTherapy(props: Props): ScrollingFrame
   }
 end
 
-return CatTherapy
+return Page

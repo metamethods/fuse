@@ -115,7 +115,7 @@ end
 
 export type Props = {}
 
-local function SkyboxTemplates(props: Props): ScrollingFrame
+local function Page(props: Props): ScrollingFrame
   return ScrollingFrame {
     Size = UDim2.fromScale(1, 1),
     
@@ -141,4 +141,4 @@ local function SkyboxTemplates(props: Props): ScrollingFrame
   }
 end
 
-return SkyboxTemplates
+return Page
