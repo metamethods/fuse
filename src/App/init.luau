@@ -10,7 +10,7 @@ local Pages = require(Components.Pages)
 local Theme = require(Fuse.App.Theme)
 
 local OreValidator = require(script.Pages.OreValidator)
-local CatTherapy = require(script.Pages.CatTherapy)
+local Therapy = require(script.Pages.Therapy)
 local SkyboxTemplates = require(script.Pages.SkyboxTemplates)
 
 local State = require(Fuse.State)
@@ -85,8 +85,8 @@ local function App(props: AppProps): Frame
           component = SkyboxTemplates {}
         },
         {
-          name = "Cat Therapy",
-          component = CatTherapy {}
+          name = "Therapy",
+          component = Therapy {}
         }
       }
     }
