@@ -25,38 +25,38 @@ local function Page(props: Props): ScrollingFrame
     Orientation = spring(cubeOrientation, 1.5, .15)
   }
 
-  task.spawn(function()
-    local sides = {
-      Enum.NormalId.Back,
-      Enum.NormalId.Right,
-      Enum.NormalId.Front,
-      Enum.NormalId.Left,
-    }
-    
-    local function shiftSides()
-      local first = table.remove(sides, 1)
-      table.insert(sides, first)
-    end
+  local sides = {
+    Enum.NormalId.Back,
+    Enum.NormalId.Right,
+    Enum.NormalId.Front,
+    Enum.NormalId.Left,
+  }
+  
+  local function shiftSides()
+    local first = table.remove(sides, 1)
+    table.insert(sides, first)
+  end
 
-    local function addImage()
-      local side = sides[1]
-      local image = images[math.random(#images)]
+  local function addImage()
+    local side = sides[1]
+    local image = images[math.random(#images)]
 
-      for _, decal in cube:GetChildren() do
-        if decal:IsA("Decal") and decal.Face == sides[2] then
-          decal:Destroy()
-        end
+    for _, decal in cube:GetChildren() do
+      if decal:IsA("Decal") and decal.Face == sides[2] then
+        decal:Destroy()
       end
-
-      create "Decal" {
-        Texture = `http://www.roblox.com/asset/?id={image}`,
-        Face = side,
-        Parent = cube
-      }
-
-      shiftSides()
     end
 
+    create "Decal" {
+      Texture = `http://www.roblox.com/asset/?id={image}`,
+      Face = side,
+      Parent = cube
+    }
+
+    shiftSides()
+  end
+
+  task.spawn(function()
     addImage()
     addImage()
 
@@ -66,9 +66,14 @@ local function Page(props: Props): ScrollingFrame
     end
   end)
 
-  return create "Frame" {
+  return create "TextButton" {
     BackgroundTransparency = 1,
     Size = UDim2.fromScale(1, 1),
+
+    Activated = function()
+      addImage()
+      rotations(rotations() + 1)
+    end,
 
     create "ViewportFrame" {
       BackgroundTransparency = 1,
