@@ -14,50 +14,23 @@ Studio.ThemeChanged:Connect(function()
   studioTheme(Studio.Theme.Name)
 end)
 
-local theme: {[Color]: { Dark: string, Light: string }} = {
-  Background = {
-    Dark = "#11111b",
-    Light = "#eff1f5"
-  },
-  BackgroundSecondary = {
-    Dark = "#181825",
-    Light = "#e6e9ef"
-  },
-  BackgroundTertiary = {
-    Dark = "#1e1e2e",
-    Light = "#dce0e8"
-  },
-  
-  Text = {
-    Dark = "#cdd6f4",
-    Light = "#4c4f69"
-  },
-  TextSwap = {
-    Dark = "#4c4f69",
-    Light = "#cdd6f4"
-  },
-  SubText = {
-    Dark = "#a6adc8",
-    Light = "#5c5f77"
-  },
-  SubTextSecondary = {
-    Dark = "#bac2de",
-    Light = "#5c5f77"
-  },
+local theme: {[Color]: Enum.StudioStyleGuideColor | { Enum: Enum.StudioStyleGuideColor, Modifier: Enum.StudioStyleGuideModifier  } | { Dark: string, Light: string }} = {
+  Background = Enum.StudioStyleGuideColor.MainBackground,
+  BackgroundSecondary = Enum.StudioStyleGuideColor.InputFieldBackground,
+  BackgroundTertiary = Enum.StudioStyleGuideColor.DialogButton,
+
+  Text = Enum.StudioStyleGuideColor.MainText,
+  SubText = Enum.StudioStyleGuideColor.DimmedText,
+  SubTextSecondary = Enum.StudioStyleGuideColor.DimmedText,
 
   Overlay = {
-    Dark = "#6c7086",
-    Light = "#9ca0b0"
+    Dark = "#7a7a7a",
+    Light = "#2a2a2a"
   },
-
-  Border = {
-    Dark = "#585b70",
-    Light = "#acb0be"
-  },
-
+  Border = Enum.StudioStyleGuideColor.Border,
   Primary = {
-    Dark = "#cba6f7",
-    Light = "#7287fd"
+    Enum = Enum.StudioStyleGuideColor.Button,
+    Modifier = Enum.StudioStyleGuideModifier.Selected 
   },
 
   Lavender = {
@@ -80,7 +53,7 @@ local theme: {[Color]: { Dark: string, Light: string }} = {
 
 export type Color = 
   "Background" | "BackgroundSecondary" | "BackgroundTertiary" |
-  "Text" | "TextSwap" | "SubText" | "SubTextSecondary" |
+  "Text" | "SubText" | "SubTextSecondary" |
   "Overlay" |
   "Border" |
   "Primary" |
@@ -88,7 +61,19 @@ export type Color =
 
 local function Theme(color: Color): () -> Color3
   return function()
-    return Color3.fromHex(theme[color][studioTheme()])
+    studioTheme() -- for the effect to run
+
+    local themeColor = theme[color]
+
+    if typeof(themeColor) == "EnumItem" then
+      return Studio.Theme:GetColor(themeColor)
+    else
+      if themeColor.Enum and themeColor.Modifier then
+        return Studio.Theme:GetColor(themeColor.Enum, themeColor.Modifier)
+      else
+        return Color3.fromHex(themeColor[studioTheme()])
+      end
+    end
   end
 end
 

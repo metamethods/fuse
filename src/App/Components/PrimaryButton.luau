@@ -8,7 +8,7 @@ local Theme = require(Fuse.App.Theme)
 local function PrimaryButton(props: Button.ButtonProps): TextButton
   return Button {
     BackgroundColor = Theme "Primary",
-    TextColor = Theme "TextSwap",
+    TextColor = Theme "Text",
 
     Text = props.Text,
     Layout = props.Layout,
