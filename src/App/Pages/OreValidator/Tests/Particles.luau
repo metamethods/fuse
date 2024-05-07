@@ -16,7 +16,7 @@ return Test.new(
   :setTestFn(function(ore: BasePart)
     local total = 0
     for _, instance in ore:GetDescendants() do
-      if not instance:IsA("ParticleEmitter") then continue end
+      if not instance:IsA("ParticleEmitter") or not instance.Enabled then continue end
       total += math.round(predictParticleEmission(instance))
     end
 
