@@ -9,6 +9,7 @@ local Padding = require(Components.Padding)
 local Pages = require(Components.Pages)
 local Theme = require(Fuse.App.Theme)
 
+local Cat = require(script.Pages.Cat)
 local OreValidator = require(script.Pages.OreValidator)
 local Therapy = require(script.Pages.Therapy)
 local SkyboxTemplates = require(script.Pages.SkyboxTemplates)
@@ -87,6 +88,10 @@ local function App(props: AppProps): Frame
         {
           name = "Therapy",
           component = Therapy {}
+        },
+        {
+          name = "BLEHH",
+          component = Cat {}
         }
       }
     }
