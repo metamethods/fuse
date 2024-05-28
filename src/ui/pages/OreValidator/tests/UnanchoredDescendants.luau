@@ -11,7 +11,7 @@ return Test.define("Unanchored Descendants", "Checks if all of the descendants i
   end
 
   if #unanchoredDescendants > 0 then
-    return Test.fail("There seems to be <b>{#unanchoredDescendants} unanchored descendants</b> in the ore")
+    return Test.fail(`There seems to be <b>{#unanchoredDescendants} unanchored descendants</b> in the ore`)
   else
     return Test.ok("All of the descendants in the ore are unanchored")
   end
