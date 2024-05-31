@@ -3,7 +3,7 @@ local isClass = require(script.Parent.isClass)
 local vertexColor = require(script.Parent.vertexColor)
 
 local function transformDescendantsColors(instance: Instance, transform: (color: Color3) -> Color3)
-  for _, instance in ipairs(instance:GetDescendants()) do
+  for _, instance in instance:GetDescendants() do
     if instance:IsA("DataModelMesh") then -- Includes SpecialMesh and BlockMesh (Character Mesh doesn't have a vertex color property)
       instance.VertexColor = vertexColor.colorToVertex(
         transform(vertexColor.vertexToColor(instance.VertexColor))
