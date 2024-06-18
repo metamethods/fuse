@@ -71,11 +71,30 @@ function getUnconstrainedParts(target: BasePart): {BasePart}
   return unconstrainedParts
 end
 
+function getDisabledConstraints(target: BasePart): {Constraint | WeldConstraint}
+  local disabledConstraints = {}
+
+  for _, instance in target:GetDescendants() do
+    if instance:IsA("Constraint") or instance:IsA("WeldConstraint") then
+      if not instance.Enabled then
+        table.insert(disabledConstraints, instance)
+      end
+    end
+  end
+
+  return disabledConstraints
+end
+
 return Test.define("Descendants Constrained", "Checks if all of the descendants are constrained to the ore", function(ore)
   local unconstrainedParts = getUnconstrainedParts(ore)
+  local disabledContraints = getDisabledConstraints(ore)
 
   if #unconstrainedParts == 0 then
-    return Test.ok("All descendants are welded to the ore!")
+    if #disabledContraints == 0 then
+      return Test.ok("All descendants are welded to the ore!")
+    else
+      return Test.warn(`{#disabledContraints} disabled constraint(s) was found in your ore. You might expierence the ore falling apart if they aren't enabled.`, disabledContraints)
+    end
   else
     return Test.fail(`{#unconstrainedParts} unconstrained part(s) was found in your ore.`, unconstrainedParts)
   end
