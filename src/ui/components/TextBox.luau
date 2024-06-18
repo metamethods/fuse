@@ -28,7 +28,7 @@ local function TextBox(props: TextBoxProps): TextBox
     TextEditable = not props.readonly,
     TextSize = 16,
     TextWrapped = true,
-    Font = Enum.Font.Gotham,
+    FontFace = Font.fromName("Montserrat", Enum.FontWeight.Medium),
     RichText = true,
     TextColor3 = useTheme(Enum.StudioStyleGuideColor.MainText),
     PlaceholderColor3 = useTheme(Enum.StudioStyleGuideColor.SubText),

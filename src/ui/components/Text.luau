@@ -18,7 +18,7 @@ local function Text(props: TextProps): TextLabel
     RichText = true,
     TextColor3 = useTheme(Enum.StudioStyleGuideColor.MainText),
     TextSize = 16,
-    Font = Enum.Font.Gotham,
+    FontFace = Font.fromName("Montserrat", Enum.FontWeight.Medium),
     TextXAlignment = Enum.TextXAlignment.Left,
     TextWrapped = true,
 

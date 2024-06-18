@@ -5,7 +5,7 @@ local function HeaderText(props: Text.TextProps): TextLabel
     text = props.text,
     layout = {
       TextSize = 24,
-      Font = Enum.Font.GothamBold,
+      FontFace = Font.fromName("Montserrat", Enum.FontWeight.Bold),
 
       props.layout
     }

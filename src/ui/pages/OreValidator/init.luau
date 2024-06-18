@@ -56,7 +56,7 @@ local function Test(props: TestProps): Frame
                 Text {
                   text = props.description,
                   layout = {
-                    Font = Enum.Font.GothamMedium,
+                    FontFace = Font.fromName("Montserrat", Enum.FontWeight.SemiBold),
                   }
                 },
               }

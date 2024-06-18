@@ -62,7 +62,7 @@ local function Button(props: ButtonProps): TextButton
     Text = props.text,
     TextColor3 = vide.spring(textColor, .1),
     TextSize = 16,
-    Font = Enum.Font.Gotham,
+    FontFace = Font.fromName("Montserrat", Enum.FontWeight.Medium),
 
     vide.create "UIStroke" {
       Color = function()
