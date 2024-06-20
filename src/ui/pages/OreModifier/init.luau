@@ -25,8 +25,9 @@ local function Modifier(props: ModifierProps): TextButton
   return Button {
     text = "",
     layout = {
+      Name = props.title,
       Size = UDim2.fromScale(1, 0),
-      AutomaticSize = Enum.AutomaticSize.Y,
+      AutomaticSize = Enum.AutomaticSize.Y
     },
     children = {
       Fragment {
@@ -80,6 +81,9 @@ local function OreModifier(props: OreModifierProps): ScrollingFrame
 
     Fragment {
       padding = UDim.new(0, 8),
+      listLayout = {
+        SortOrder = Enum.SortOrder.Name
+      },
       children = vide.indexes(vide.source(script.modifiers:GetChildren()), function(module: vide.Source<ModuleScript>)
         local modifierDefinition: types.ModifierDefinition = require(module())
   
