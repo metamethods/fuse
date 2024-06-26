@@ -5,7 +5,6 @@ Fuse is a multi-purpose plugin for assisting in the development of [REx: Reincar
 - **Ore Validator** - Help validate ores to ensure they are correctly configured
 - **Ore Modifier** - Quickly modify ores with presets that could ion/spec the ore
 - **Ore Info** - Get quick details about your ore (descendant count, different colors, total avg particle count, etc...)
-<!-- - **Ore Preview** - Preview your ore as if it was in the Ore Index -->
 - **Skyboxes** - Change your in-game skybox to a variety of different skyboxes
 - **Therapy** - Just a funny tab
 

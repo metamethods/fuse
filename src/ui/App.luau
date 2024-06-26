@@ -88,13 +88,6 @@ local function App(props: AppProps)
               ore = ore
             }
           },
-          -- TODO: Figure a more optimized way to render/do this
-          -- {
-          --   name = "Ore Preview",
-          --   component = OrePreview {
-          --     ore = ore
-          --   }
-          -- },
           {
             name = "Skyboxes",
             component = Skyboxes {}
