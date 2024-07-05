@@ -5,5 +5,5 @@ return Modifier.define("Randomize Color", "Picks a random color for your ore", f
   local random = Random.new() -- OMG ITS RANDOM LIKE THE PERSON FROM REX NAMED KINGRANDOM!!1111
   local color = Color3.new(random:NextNumber(), random:NextNumber(), random:NextNumber())
   
-  transformDescendantsColors(ore, function() return color end)
+  transformDescendantsColors(ore, function() return color end) -- 5+4
 end)
