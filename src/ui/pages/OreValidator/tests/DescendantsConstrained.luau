@@ -30,7 +30,7 @@ function linkedTo<T>(links: {Link<T>}, from: T, to: T, visited: {[T]: boolean}):
 end
 
 function getUnconstrainedParts(target: BasePart): {BasePart}
-  local constraints: {Constraint | WeldConstraint} = {}
+  local constraints: {Constraint | WeldConstraint | Motor} = {}
   local parts: {BasePart} = {}
   local constraintTree: {Link<BasePart>} = {}
 
