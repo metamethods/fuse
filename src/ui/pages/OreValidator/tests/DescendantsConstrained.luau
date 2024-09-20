@@ -35,7 +35,7 @@ function getUnconstrainedParts(target: BasePart): {BasePart}
   local constraintTree: {Link<BasePart>} = {}
 
   for _, instance in target:GetDescendants() do
-    if instance:IsA("Constraint") or instance:IsA("WeldConstraint") then
+    if instance:IsA("Constraint") or instance:IsA("WeldConstraint") or instance:IsA("Motor") then
       table.insert(constraints, instance)
     end
     if instance:IsA("BasePart") then
