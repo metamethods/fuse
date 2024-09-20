@@ -54,7 +54,7 @@ function getUnconstrainedParts(target: BasePart): {BasePart}
       object1 = constraint.Part1
     end
 
-    if not object0 or object1 then
+    if not object0 or not object1 then
       warn(`{constraint} has a nil part0/part1. This will not count as a valid constraint`)
       continue
     end
