@@ -54,6 +54,11 @@ function getUnconstrainedParts(target: BasePart): {BasePart}
       object1 = constraint.Part1
     end
 
+    if not object0 or object1 then
+      warn(`{constraint} has a nil part0/part1. This will not count as a valid constraint`)
+      continue
+    end
+
     table.insert(constraintTree, {
       link0 = object0,
       link1 = object1
