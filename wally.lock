@@ -9,5 +9,5 @@ dependencies = []
 
 [[package]]
 name = "metamethods/fuse"
-version = "1.0.0"
+version = "1.0.12"
 dependencies = [["vide", "aloroid/vide-with-types@0.2.3"]]
