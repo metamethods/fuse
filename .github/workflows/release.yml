@@ -18,9 +18,7 @@ jobs:
                     WALLY_VERSION=$(cat wally.toml | grep -Po 'version = "\K[0-9.]*(?=")')
                     sed -i "s/VERSION = \".*\"/VERSION = \"$WALLY_VERSION\"/" src/constants.luau
             -   uses: ok-nick/setup-aftman@v0.4.2
-            -   run: wally install
-            -   run: rojo sourcemap default.project.json --output sourcemap.json
-            -   run: wally-package-types --sourcemap sourcemap.json Packages/
+            -   run: pesde install
             -   run: rojo build --output "$(cat ./wally.toml | grep -oP 'name = \".*/\K.*(?=\")').rbxm"
             -   run: echo "VERSION=$(cat wally.toml | grep -Po 'version = "\K[0-9.]*(?=")')" >> "$GITHUB_ENV"
             -   run: echo "ARTIFACTS=$(cat ./wally.toml | grep -oP 'name = \".*/\K.*(?=\")').rbxm" >> "$GITHUB_ENV"
