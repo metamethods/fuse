@@ -3,8 +3,8 @@ name: Release
 on:
     push:
         branches:
-        - master
-        - main
+            - master
+            - main
 
 jobs:
     release:
@@ -12,17 +12,17 @@ jobs:
         permissions:
             contents: write
         steps:
-            -   uses: actions/checkout@v4
-            # Replace the version in src/constants.luau with the version in wally.toml
-            -   run: |
-                    WALLY_VERSION=$(cat wally.toml | grep -Po 'version = "\K[0-9.]*(?=")')
-                    sed -i "s/VERSION = \".*\"/VERSION = \"$WALLY_VERSION\"/" src/constants.luau
-            -   uses: ok-nick/setup-aftman@v0.4.2
-            -   run: pesde install
-            -   run: rojo build --output "$(cat ./wally.toml | grep -oP 'name = \".*/\K.*(?=\")').rbxm"
-            -   run: echo "VERSION=$(cat wally.toml | grep -Po 'version = "\K[0-9.]*(?=")')" >> "$GITHUB_ENV"
-            -   run: echo "ARTIFACTS=$(cat ./wally.toml | grep -oP 'name = \".*/\K.*(?=\")').rbxm" >> "$GITHUB_ENV"
-            -   uses: ncipollo/release-action@v1
-                with:
-                    artifacts: ${{ env.ARTIFACTS }}
-                    tag: ${{ env.VERSION }}
+            - uses: actions/checkout@v4
+            # Replace the version in src/constants.luau with the version in pesde.toml
+            - run: |
+                  PESDE_VERSION=$(cat pesde.toml | grep -Po 'version = "\K[0-9.]*(?=")')
+                  sed -i "s/VERSION = \".*\"/VERSION = \"$PESDE_VERSION\"/" src/constants.luau
+            - uses: ok-nick/setup-aftman@v0.4.2
+            - run: pesde install
+            - run: rojo build --output "$(cat ./pesde.toml | grep -oP 'name = \".*/\K.*(?=\")').rbxm"
+            - run: echo "VERSION=$(cat pesde.toml | grep -Po 'version = "\K[0-9.]*(?=")')" >> "$GITHUB_ENV"
+            - run: echo "ARTIFACTS=$(cat ./pesde.toml | grep -oP 'name = \".*/\K.*(?=\")').rbxm" >> "$GITHUB_ENV"
+            - uses: ncipollo/release-action@v1
+              with:
+                  artifacts: ${{ env.ARTIFACTS }}
+                  tag: ${{ env.VERSION }}
