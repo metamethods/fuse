@@ -17,7 +17,7 @@ jobs:
             - run: |
                   PESDE_VERSION=$(cat pesde.toml | grep -Po 'version = "\K[0-9.]*(?=")')
                   sed -i "s/VERSION = \".*\"/VERSION = \"$PESDE_VERSION\"/" src/constants.luau
-            - uses: ok-nick/setup-aftman@v0.4.2
+            - uses: CompeyDev/setup-rokit@v0.1.2
             - run: pesde install
             - run: rojo build --output "$(cat ./pesde.toml | grep -oP 'name = \".*/\K.*(?=\")').rbxm"
             - run: echo "VERSION=$(cat pesde.toml | grep -Po 'version = "\K[0-9.]*(?=")')" >> "$GITHUB_ENV"
