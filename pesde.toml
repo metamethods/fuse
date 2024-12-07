@@ -14,3 +14,9 @@ sourcemap_generator = ".pesde/sourcemap_generator.luau"
 
 [indices]
 default = "https://github.com/daimond113/pesde-index"
+
+[wally_indices]
+default = "https://github.com/UpliftGames/wally-index"
+
+[dependencies]
+vide = { wally = "wally#aloroid/vide-with-types", version = "^0.2.7" }
