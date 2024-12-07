@@ -10,88 +10,89 @@ local Text = require(script.Parent.Parent.components.Text)
 local TextBox = require(script.Parent.Parent.components.TextBox)
 
 export type OrePreviewProps = {
-  ore: vide.Source<BasePart?>,
+	ore: vide.Source<BasePart?>,
 }
 
 local function OrePreview(props: OrePreviewProps): Frame
-  local currentRotation = vide.source(Vector3.new(0, 0, 0))
-  local currentZoom = vide.source(20) -- TODO: Allow zooming
-  local clonedOre = useOre(props.ore)
+	local currentRotation = vide.source(Vector3.new(0, 0, 0))
+	local currentZoom = vide.source(20) -- TODO: Allow zooming
+	local clonedOre = useOre(props.ore)
 
-  local camera = Instance.new("Camera")
+	local camera = Instance.new("Camera")
 
-  local orePosition = function()
-    local ore = clonedOre()
-    if not ore then return CFrame.new() end
-    return ore.CFrame
-  end
+	local orePosition = function()
+		local ore = clonedOre()
+		if not ore then
+			return CFrame.new()
+		end
+		return ore.CFrame
+	end
 
-  local cameraCFrame = function()
-    local currentRotation = currentRotation()
-    return orePosition() 
-      * CFrame.Angles(
-        math.rad(currentRotation.X),
-        math.rad(currentRotation.Y),
-        math.rad(currentRotation.Z)
-      )
-      * CFrame.new(0, 0, currentZoom())
-  end
+	local cameraCFrame = function()
+		local currentRotation = currentRotation()
+		return orePosition()
+			* CFrame.Angles(math.rad(currentRotation.X), math.rad(currentRotation.Y), math.rad(currentRotation.Z))
+			* CFrame.new(0, 0, currentZoom())
+	end
 
-  vide.cleanup(RunService.RenderStepped:Connect(function(delta)
-    currentRotation(currentRotation() + Vector3.new(.5, 1, .25) * delta * 50)
-  end))
+	vide.cleanup(RunService.RenderStepped:Connect(function(delta)
+		currentRotation(currentRotation() + Vector3.new(0.5, 1, 0.25) * delta * 50)
+	end))
 
-  vide.apply(camera) {
-    CFrame = cameraCFrame
-  }
+	vide.apply(camera)({
+		CFrame = cameraCFrame,
+	})
 
-  return Page {
-    Fragment {
-      direction = "Horizontal",
-      padding = UDim.new(0, 8),
-      layout = {
-        Size = UDim2.fromScale(1, .5),
-        AutomaticSize = Enum.AutomaticSize.None
-      },
-      children = {
-        vide.create "ViewportFrame" {
-          Name = "OrePreview",
-          BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light),
-          Size = UDim2.new(.5, -4, 1, 0),
-          CurrentCamera = camera,
-          
-          clonedOre,
+	return Page({
+		Fragment({
+			direction = "Horizontal",
+			padding = UDim.new(0, 8),
+			layout = {
+				Size = UDim2.fromScale(1, 0.5),
+				AutomaticSize = Enum.AutomaticSize.None,
+			},
+			children = {
+				vide.create("ViewportFrame")({
+					Name = "OrePreview",
+					BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light),
+					Size = UDim2.new(0.5, -4, 1, 0),
+					CurrentCamera = camera,
 
-          Round {}
-        },
+					clonedOre,
 
-        TextBox {
-          text = "Some really cool description or whatever",
-          readonly = true,
-          layout = {
-            Size = UDim2.new(.5, -4, 1, 0),
-            AutomaticSize = Enum.AutomaticSize.None,
-            BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light),
-          }
-        }
-      }
-    },
+					Round({}),
+				}),
 
-    Fragment {
-      direction = "Horizontal",
-      padding = UDim.new(0, 8),
-      layout = {
-        Size = UDim2.fromScale(1, .15),
-        AutomaticSize = Enum.AutomaticSize.None
-      },
-      children = {
-        Text {
-          text = "Ore Creator: yes",
-          layout = { BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light), BackgroundTransparency = 0 }
-        },
-      }
-    }
-  }
+				TextBox({
+					text = "Some really cool description or whatever",
+					readonly = true,
+					layout = {
+						Size = UDim2.new(0.5, -4, 1, 0),
+						AutomaticSize = Enum.AutomaticSize.None,
+						BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light),
+					},
+				}),
+			},
+		}),
+
+		Fragment({
+			direction = "Horizontal",
+			padding = UDim.new(0, 8),
+			layout = {
+				Size = UDim2.fromScale(1, 0.15),
+				AutomaticSize = Enum.AutomaticSize.None,
+			},
+			children = {
+				Text({
+					text = "Ore Creator: yes",
+					layout = {
+						BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light),
+						BackgroundTransparency = 0,
+					},
+				}),
+			},
+		}),
+	})
 end
 
 return OrePreview
