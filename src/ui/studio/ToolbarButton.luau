@@ -12,7 +12,12 @@ export type ToolbarButtonProps = {
 }
 
 local function ToolbarButton(props: ToolbarButtonProps): PluginToolbarButton
-	local button = props.toolbar:CreateButton(props.id, props.tooltip, props.icon, props.text)
+	local button = props.toolbar:CreateButton(
+		props.id,
+		props.tooltip,
+		props.icon,
+		props.text
+	)
 
 	if props.onClick then
 		vide.cleanup(button.Click:Connect(props.onClick))

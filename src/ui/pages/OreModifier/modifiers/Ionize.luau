@@ -1,5 +1,7 @@
 local Modifier = require(script.Parent.Parent.Modifier)
-local transformDescendantsColors = require(script.Parent.Parent.Parent.Parent.Parent.util.transformDescendantsColors)
+local transformDescendantsColors = require(
+	script.Parent.Parent.Parent.Parent.Parent.util.transformDescendantsColors
+)
 
 return Modifier.define("Ionize", "Ionize your ore", function(ore: BasePart)
 	transformDescendantsColors(ore, function(color)

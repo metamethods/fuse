@@ -56,7 +56,10 @@ local function Test(props: TestProps): Frame
 								Text({
 									text = props.description,
 									layout = {
-										FontFace = Font.fromName("Montserrat", Enum.FontWeight.SemiBold),
+										FontFace = Font.fromName(
+											"Montserrat",
+											Enum.FontWeight.SemiBold
+										),
 									},
 								}),
 							},
@@ -65,7 +68,8 @@ local function Test(props: TestProps): Frame
 						Text({
 							text = function()
 								local result = props.testResult()
-								return result and result.message or "<i>This test hasn't been ran yet!</i>"
+								return result and result.message
+									or "<i>This test hasn't been ran yet!</i>"
 							end,
 						}),
 
@@ -125,7 +129,8 @@ local function OreValidator(props: OreValidatorProps): ScrollingFrame
 			testResult: vide.Source<types.TestResult?>,
 			runTest: () -> types.TestResult,
 		}
-	} = {}
+	} =
+		{}
 
 	local runTestsButtonDisabled = function()
 		return props.ore() == nil
@@ -170,34 +175,37 @@ local function OreValidator(props: OreValidatorProps): ScrollingFrame
 			},
 		}),
 
-		vide.indexes(vide.source(script.tests:GetChildren()), function(module: vide.Source<ModuleScript>)
-			local testResult = vide.source(nil)
-			local testDefinition: types.TestDefinition = require(module())
+		vide.indexes(
+			vide.source(script.tests:GetChildren()),
+			function(module: vide.Source<ModuleScript>)
+				local testResult = vide.source(nil)
+				local testDefinition: types.TestDefinition = require(module())
 
-			local runTest = function()
-				local ore = props.ore()
-				if not ore then
-					return
+				local runTest = function()
+					local ore = props.ore()
+					if not ore then
+						return
+					end
+					local result = testDefinition.fn(ore)
+					testResult(result)
+					return result
 				end
-				local result = testDefinition.fn(ore)
-				testResult(result)
-				return result
+
+				table.insert(tests, {
+					testResult = testResult,
+					runTest = runTest,
+				})
+
+				return Test({
+					title = testDefinition.title,
+					description = testDefinition.description,
+					fn = testDefinition.fn,
+					ore = props.ore,
+					testResult = testResult,
+					onRunTestClicked = runTest,
+				})
 			end
-
-			table.insert(tests, {
-				testResult = testResult,
-				runTest = runTest,
-			})
-
-			return Test({
-				title = testDefinition.title,
-				description = testDefinition.description,
-				fn = testDefinition.fn,
-				ore = props.ore,
-				testResult = testResult,
-				onRunTestClicked = runTest,
-			})
-		end),
+		),
 	})
 end
 

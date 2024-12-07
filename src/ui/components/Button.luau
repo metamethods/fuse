@@ -66,7 +66,9 @@ local function Button(props: ButtonProps): TextButton
 
 		vide.create("UIStroke")({
 			Color = function()
-				return theme().Name == "Light" and useTheme(Enum.StudioStyleGuideColor.ButtonBorder)() or Color3.new()
+				return theme().Name == "Light"
+						and useTheme(Enum.StudioStyleGuideColor.ButtonBorder)()
+					or Color3.new()
 			end,
 			ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
 			Transparency = function()

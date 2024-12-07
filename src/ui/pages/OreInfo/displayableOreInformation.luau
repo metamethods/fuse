@@ -1,5 +1,7 @@
-local particleEmission = require(script.Parent.Parent.OreValidator.particleEmission)
-local getDescendantsOfClass = require(script.Parent.Parent.Parent.Parent.util.getDescendantsOfClass)
+local particleEmission =
+	require(script.Parent.Parent.OreValidator.particleEmission)
+local getDescendantsOfClass =
+	require(script.Parent.Parent.Parent.Parent.util.getDescendantsOfClass)
 
 return {
 	{
@@ -19,11 +21,15 @@ return {
 		fn = function(ore)
 			local averageParticles = 0
 
-			for _, particleEmitter in getDescendantsOfClass(ore, "ParticleEmitter") do
+			for _, particleEmitter in
+				getDescendantsOfClass(ore, "ParticleEmitter")
+			do
 				if not particleEmitter.Enabled then
 					continue
 				end
-				averageParticles += math.floor(particleEmission(particleEmitter))
+				averageParticles += math.floor(
+					particleEmission(particleEmitter)
+				)
 			end
 
 			return `<b>{averageParticles}</b> Particles/s`
@@ -38,7 +44,11 @@ return {
 	{
 		name = "Constraints",
 		fn = function(ore)
-			return `<b>{#getDescendantsOfClass(ore, "Constraint", "WeldConstraint")}</b>`
+			return `<b>{#getDescendantsOfClass(
+				ore,
+				"Constraint",
+				"WeldConstraint"
+			)}</b>`
 		end,
 	},
 } :: {

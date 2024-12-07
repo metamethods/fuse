@@ -89,7 +89,10 @@ local function Skybox(props: SkyboxProps): ImageButton
 
 		vide.create("Frame")({
 			Name = "Overlay",
-			BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Button, "Hover"),
+			BackgroundColor3 = useTheme(
+				Enum.StudioStyleGuideColor.Button,
+				"Hover"
+			),
 			BackgroundTransparency = vide.spring(overlayTransparency, 0.125),
 			Size = UDim2.fromScale(1, 1),
 
@@ -121,11 +124,14 @@ local function Skyboxes(_: SkyboxesProps): ScrollingFrame
 				HorizontalFlex = Enum.UIFlexAlignment.Fill,
 				VerticalFlex = Enum.UIFlexAlignment.Fill,
 			},
-			children = vide.indexes(vide.source(script.skyboxes:GetChildren()), function(skybox: vide.Source<Sky>)
-				return Skybox({
-					skybox = skybox(),
-				})
-			end),
+			children = vide.indexes(
+				vide.source(script.skyboxes:GetChildren()),
+				function(skybox: vide.Source<Sky>)
+					return Skybox({
+						skybox = skybox(),
+					})
+				end
+			),
 		}),
 	})
 end

@@ -31,12 +31,18 @@ local function OrePreview(props: OrePreviewProps): Frame
 	local cameraCFrame = function()
 		local currentRotation = currentRotation()
 		return orePosition()
-			* CFrame.Angles(math.rad(currentRotation.X), math.rad(currentRotation.Y), math.rad(currentRotation.Z))
+			* CFrame.Angles(
+				math.rad(currentRotation.X),
+				math.rad(currentRotation.Y),
+				math.rad(currentRotation.Z)
+			)
 			* CFrame.new(0, 0, currentZoom())
 	end
 
 	vide.cleanup(RunService.RenderStepped:Connect(function(delta)
-		currentRotation(currentRotation() + Vector3.new(0.5, 1, 0.25) * delta * 50)
+		currentRotation(
+			currentRotation() + Vector3.new(0.5, 1, 0.25) * delta * 50
+		)
 	end))
 
 	vide.apply(camera)({
@@ -54,7 +60,9 @@ local function OrePreview(props: OrePreviewProps): Frame
 			children = {
 				vide.create("ViewportFrame")({
 					Name = "OrePreview",
-					BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light),
+					BackgroundColor3 = useTheme(
+						Enum.StudioStyleGuideColor.Light
+					),
 					Size = UDim2.new(0.5, -4, 1, 0),
 					CurrentCamera = camera,
 
@@ -69,7 +77,9 @@ local function OrePreview(props: OrePreviewProps): Frame
 					layout = {
 						Size = UDim2.new(0.5, -4, 1, 0),
 						AutomaticSize = Enum.AutomaticSize.None,
-						BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light),
+						BackgroundColor3 = useTheme(
+							Enum.StudioStyleGuideColor.Light
+						),
 					},
 				}),
 			},
@@ -86,7 +96,9 @@ local function OrePreview(props: OrePreviewProps): Frame
 				Text({
 					text = "Ore Creator: yes",
 					layout = {
-						BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light),
+						BackgroundColor3 = useTheme(
+							Enum.StudioStyleGuideColor.Light
+						),
 						BackgroundTransparency = 0,
 					},
 				}),

@@ -18,7 +18,9 @@ export type TextBoxProps = {
 local function TextBox(props: TextBoxProps): TextBox
 	return vide.create("TextBox")({
 		Name = "TextBox",
-		BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.ScriptBackground),
+		BackgroundColor3 = useTheme(
+			Enum.StudioStyleGuideColor.ScriptBackground
+		),
 		Size = UDim2.fromScale(1, 0),
 		AutomaticSize = Enum.AutomaticSize.Y,
 

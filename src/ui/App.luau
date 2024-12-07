@@ -66,7 +66,12 @@ local function App(props: AppProps)
 			Pages({
 				pageIndex = pageIndex,
 				pageLayout = {
-					Padding({ UDim.new(0, 0), UDim.new(0, 8), UDim.new(0, 8), UDim.new(0, 8) }),
+					Padding({
+						UDim.new(0, 0),
+						UDim.new(0, 8),
+						UDim.new(0, 8),
+						UDim.new(0, 8),
+					}),
 				},
 				pages = {
 					{

@@ -5,7 +5,10 @@ type ColorModifier = "Disabled" | "Default" | "Hover" | "Pressed" | "Selected"
 
 local theme = useStudioTheme()
 
-local function useTheme(color: Enum.StudioStyleGuideColor, modifier: (ColorModifier | vide.Source<ColorModifier>)?)
+local function useTheme(
+	color: Enum.StudioStyleGuideColor,
+	modifier: (ColorModifier | vide.Source<ColorModifier>)?
+)
 	return function()
 		local modifier = if modifier then vide.read(modifier) else nil
 		return theme():GetColor(color, modifier)

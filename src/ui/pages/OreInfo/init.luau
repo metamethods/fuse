@@ -59,27 +59,34 @@ local function OreInfo(props: OreInfoProps): ScrollingFrame
 				return Fragment({
 					padding = UDim.new(0, 8),
 					children = {
-						vide.indexes(vide.source(displayableOreInformation), function(information)
-							return Text({
-								text = function()
-									local oreInfo = information()
-									local ore = props.ore()
+						vide.indexes(
+							vide.source(displayableOreInformation),
+							function(information)
+								return Text({
+									text = function()
+										local oreInfo = information()
+										local ore = props.ore()
 
-									if not ore then
-										return ""
-									end
+										if not ore then
+											return ""
+										end
 
-									return `<b>{oreInfo.name}</b>: {oreInfo.fn(props.ore())}`
-								end,
-								layout = {
-									BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light),
-									BackgroundTransparency = 0,
+										return `<b>{oreInfo.name}</b>: {oreInfo.fn(
+											props.ore()
+										)}`
+									end,
+									layout = {
+										BackgroundColor3 = useTheme(
+											Enum.StudioStyleGuideColor.Light
+										),
+										BackgroundTransparency = 0,
 
-									Padding({}),
-									Round({}),
-								},
-							})
-						end),
+										Padding({}),
+										Round({}),
+									},
+								})
+							end
+						),
 
 						Text({
 							text = "Instances",
@@ -89,7 +96,9 @@ local function OreInfo(props: OreInfoProps): ScrollingFrame
 							return Text({
 								text = `<b>{className}</b>: {count()}`,
 								layout = {
-									BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Light),
+									BackgroundColor3 = useTheme(
+										Enum.StudioStyleGuideColor.Light
+									),
 									BackgroundTransparency = 0,
 
 									Padding({}),

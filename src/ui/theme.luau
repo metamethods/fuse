@@ -8,7 +8,10 @@ studio.ThemeChanged:Connect(function()
 	currentTheme(studio.Theme)
 end)
 
-local function theme(color: Enum.StudioStyleGuideColor, modifier: Enum.StudioStyleGuideModifier?): vide.Source<Color3>
+local function theme(
+	color: Enum.StudioStyleGuideColor,
+	modifier: Enum.StudioStyleGuideModifier?
+): vide.Source<Color3>
 	return function()
 		return currentTheme():GetColor(color, modifier)
 	end

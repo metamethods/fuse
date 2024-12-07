@@ -17,7 +17,9 @@ return Test.define(
 				`The ore has a total of <b>{#ore:GetDescendants()} descendants</b>. You should consider <b>reducing the amount of descendants</b>`
 			)
 		else
-			return Test.ok(`The ore has a total of <b>{#ore:GetDescendants()} descendants</b>`)
+			return Test.ok(
+				`The ore has a total of <b>{#ore:GetDescendants()} descendants</b>`
+			)
 		end
 	end
 )

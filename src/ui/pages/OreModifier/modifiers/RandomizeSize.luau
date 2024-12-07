@@ -11,7 +11,11 @@ return Modifier.define(
 				continue
 			end
 			local random = Random.new()
-			instance.Size = Vector3.new(random:NextNumber() * 10, random:NextNumber() * 10, random:NextNumber() * 10)
+			instance.Size = Vector3.new(
+				random:NextNumber() * 10,
+				random:NextNumber() * 10,
+				random:NextNumber() * 10
+			)
 		end
 	end
 )

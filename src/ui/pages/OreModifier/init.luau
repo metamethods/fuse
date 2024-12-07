@@ -35,7 +35,10 @@ local function Modifier(props: ModifierProps): TextButton
 					HeaderText({ text = props.title }),
 					Text({ text = props.description }),
 
-					vide.create("Frame")({ Name = "Break", Size = UDim2.fromOffset(0, 8) }),
+					vide.create("Frame")({
+						Name = "Break",
+						Size = UDim2.fromOffset(0, 8),
+					}),
 
 					TextBox({
 						placeholder = "Repeat Count (Default: 1, Max: 100)",
@@ -44,7 +47,9 @@ local function Modifier(props: ModifierProps): TextButton
 						},
 						paddingLayout = { UDim.new(0, 0) },
 						onChanged = function(newText)
-							repeatCount(math.clamp(tonumber(newText) or 1, 1, 100))
+							repeatCount(
+								math.clamp(tonumber(newText) or 1, 1, 100)
+							)
 						end,
 					}),
 				},
@@ -61,7 +66,9 @@ local function Modifier(props: ModifierProps): TextButton
 				props.fn(ore)
 			end
 
-			ChangeHistoryService:SetWaypoint(`Used the "{props.title}" modifier on "{ore.Name}"`)
+			ChangeHistoryService:SetWaypoint(
+				`Used the "{props.title}" modifier on "{ore.Name}"`
+			)
 		end,
 	})
 end
@@ -89,7 +96,8 @@ local function OreModifier(props: OreModifierProps): ScrollingFrame
 			children = vide.indexes(
 				vide.source(script.modifiers:GetChildren()),
 				function(module: vide.Source<ModuleScript>)
-					local modifierDefinition: types.ModifierDefinition = require(module())
+					local modifierDefinition: types.ModifierDefinition =
+						require(module())
 
 					return Modifier({
 						ore = props.ore,

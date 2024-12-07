@@ -4,7 +4,11 @@ local map = require(script.Parent.Parent.Parent.Parent.util.map)
 
 local Test = {}
 
-function Test.result(type: "ok" | "fail" | "warn", message: string, details: { string | Instance }?): types.TestResult
+function Test.result(
+	type: "ok" | "fail" | "warn",
+	message: string,
+	details: { string | Instance }?
+): types.TestResult
 	return {
 		type = type,
 		message = `{message}{details and `\nDetails: <b>{details and list(
@@ -31,7 +35,11 @@ function Test.warn(message: string, details: { string }?): types.TestResult
 	return Test.result("warn", message, details)
 end
 
-function Test.define(title: string, description: string, fn: (ore: BasePart) -> types.TestResult): types.TestDefinition
+function Test.define(
+	title: string,
+	description: string,
+	fn: (ore: BasePart) -> types.TestResult
+): types.TestDefinition
 	return {
 		title = title,
 		description = description,

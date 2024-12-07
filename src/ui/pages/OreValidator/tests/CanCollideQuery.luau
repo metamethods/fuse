@@ -21,7 +21,9 @@ return Test.define(
 				descendants
 			)
 		else
-			return Test.ok("All of the descendants in the ore have collision and query disabled")
+			return Test.ok(
+				"All of the descendants in the ore have collision and query disabled"
+			)
 		end
 	end
 )
