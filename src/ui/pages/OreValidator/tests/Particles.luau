@@ -16,6 +16,12 @@ return Test.define(
 			averageTotal += math.floor(particleEmission(instance))
 		end
 
+		if averageTotal ~= averageTotal or averageTotal == math.huge then
+			return Test.fail(
+				`ok bro you DO NOT need to emit <b>{averageTotal} particles on average</b>`
+			)
+		end
+
 		if averageTotal > PARTICLE_LIMIT then
 			return Test.fail(
 				`The ore is emitting <b>{averageTotal} particles on average</b>, which is over the limit of <b>{PARTICLE_LIMIT} particles</b>`
