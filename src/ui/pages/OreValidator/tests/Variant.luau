@@ -6,7 +6,7 @@ local funnyMessages = {
 
 return Test.define(
 	"Variant Checker",
-	"Checks if the ore contains either the Spectralized or Ionized Varianet attribute",
+	"Checks if the ore contains either the Spectralized or Ionized Variant attribute",
 	function(ore)
 		local funnyMessage = funnyMessages[math.random(#funnyMessages)]
 
