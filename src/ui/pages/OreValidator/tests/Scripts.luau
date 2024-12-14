@@ -10,7 +10,7 @@ return Test.define(
 			if not instance:IsA("Script") then
 				continue
 			end
-			total += instance.Segments
+			total += 1
 		end
 
 		if total > 1 then
