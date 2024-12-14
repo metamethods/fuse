@@ -18,7 +18,7 @@ return Test.define(
 				`The ore has a total of <b>{total} scripts</b>, which is more than <b>1 script</b>`
 			)
 		elseif total == 1 then
-			return Test.ok("The ore has a script.")
+			return Test.special(Test.ok("The ore has a script."))
 		else
 			return Test.ok("The ore doesn't seem to have a script")
 		end
