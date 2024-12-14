@@ -1,7 +1,7 @@
 local Test = require(script.Parent.Parent.Test)
 
 return Test.define(
-	`Scrip count is utmost 1 or none`,
+	`Script count is utmost 1 or none`,
 	`Checks if the total amount of scripts in a ore has utmost 1 script`,
 	function(ore)
 		local total = 0
