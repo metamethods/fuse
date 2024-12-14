@@ -26,6 +26,10 @@ local function Test(props: TestProps): Frame
 		local result = props.testResult()
 
 		if result then
+			if result.metadata.color then
+				return result.metadata.color
+			end
+
 			if result.type == "ok" then
 				return Color3.new(0.4, 0.7, 0.4)
 			elseif result.type == "fail" then

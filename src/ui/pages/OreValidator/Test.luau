@@ -20,6 +20,7 @@ function Test.result(
 			end),
 			10
 		) or ""}</b>` or ""}`,
+		metadata = {},
 	}
 end
 
@@ -33,6 +34,18 @@ end
 
 function Test.warn(message: string, details: { string }?): types.TestResult
 	return Test.result("warn", message, details)
+end
+
+function Test.colorify(
+	testResult: types.TestResult,
+	color: Color3
+): types.TestResult
+	testResult.metadata.color = color
+	return testResult
+end
+
+function Test.special(testResult: types.TestResult): types.TestResult
+	return Test.colorify(testResult, Color3.new(0.5, 0.4, 0.7))
 end
 
 function Test.define(

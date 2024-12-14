@@ -4,9 +4,14 @@ export type SourcedAs<T> = T | vide.Source<T>
 export type Components = SourcedAs<{ Instance }>
 export type Component = SourcedAs<Instance>
 
+export type TestMetadata = {
+	color: Color3?,
+}
+
 export type TestResult = {
 	type: "ok" | "fail" | "warn",
 	message: string,
+	metadata: TestMetadata,
 }
 
 export type TestDefinition = {
