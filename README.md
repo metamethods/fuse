@@ -1,3 +1,5 @@
+IMPORTANT!!! Im putting this plugin in eos (end of service) as im making a new plugin which is replacing this one. [you can find it here](https://github.com/metamethods/arc)
+
 # Fuse
 Fuse is a multi-purpose plugin for assisting in the development of [REx: Reincarnated](https://discord.gg/2rY88DzQ) ores. You can get [the plugin here](https://create.roblox.com/store/asset/17002620134/Fuse)
 
